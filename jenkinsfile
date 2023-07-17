@@ -5,6 +5,7 @@ pipeline {
         jdk 'myjava'
         maven 'mymaven'
     }
+
     stages {
         stage('compile') {
             steps {
@@ -24,7 +25,6 @@ pipeline {
                 echo "package the code " 
             sh 'mvn package'
             }
-        }  
-       
+        }         
     }
 }
