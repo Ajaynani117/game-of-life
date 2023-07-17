@@ -1,0 +1,33 @@
+pipeline {
+    agent any
+
+    tools{
+        jdk 'myjava'
+        maven 'mymaven'
+    }
+    stages {
+        stage('compile') {
+            steps {
+                echo "compile the code"
+                sh 'mvn compile'
+            }
+        }
+        stage (test) {
+         
+          steps {
+            echo 'Run the test cases'
+            sh 'mvn test'
+            }
+        }
+        stage ('package') {
+            steps {
+                echo "package the code in env:${params.Env}" 
+            sh 'mvn package'
+            }
+        }  
+        stage(deploy) {
+            steps {
+                echo "deploying the app in env:${params.Env}"
+            }
+        }  
+    }
